@@ -1,0 +1,5 @@
+#! /usr/bin/bash
+
+GREP_OPTIONS=--color=never
+env | grep SDC
+env | grep MANTA
