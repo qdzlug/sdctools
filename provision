@@ -1,0 +1,14 @@
+#! /usr/bin/env bash
+
+
+ONEGBSMARTOS=g3-standard-1-smartos
+ONEGBKVM=g3-standard-1-kvm
+
+IMAGEID=$1
+NAME=$2
+PACKAGENAME=$ONEGBKVM
+
+SERVER_ID=$(sdc-createmachine --dataset $IMAGEID \
+                              --package $PACKAGENAME \
+                              --name $NAME \
+                              --tag "sdctools" | json id)
