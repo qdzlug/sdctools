@@ -1,14 +1,27 @@
 #! /usr/bin/env bash
 
-
-ONEGBSMARTOS=g3-standard-1-smartos
-ONEGBKVM=g3-standard-1-kvm
+# provision imageid  size name
 
 IMAGEID=$1
-NAME=$2
-PACKAGENAME=$ONEGBKVM
+SIZE=${2:-1}
+NAME=$3
+
+IMAGEINFO=$(sdc-getimage $IMAGEID)
+OS=$(echo $IMAGEINFO | json os)
+IMAGENAME=$(echo $IMAGEINFO | json name)
+IMAGEVER=$(echo $IMAGEINFO | json version)
+
+if [ $OS != 'smartos' ]; then
+  PKGTYPE="g3-standard-${SIZE}-kvm"
+else
+  PKGTYPE="g3-standard-${SIZE}-smartos"
+fi
+
+echo "Provisioning ${IMAGENAME} ${IMAGEVER} ${PKGTYPE} (${NAME}"
 
 SERVER_ID=$(sdc-createmachine --dataset $IMAGEID \
-                              --package $PACKAGENAME \
+                              --package "g3-standard-${SIZE}-${PKGTYPE}" \
                               --name $NAME \
-                              --tag "sdctools" | json id)
+                              --tag "sdctools=true" | json id)
+
+echo $SERVER_ID

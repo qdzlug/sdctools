@@ -1,5 +1,5 @@
 #! /usr/bin/bash
 
 GREP_OPTIONS=--color=never
-env | grep SDC
-env | grep MANTA
+env | grep SDC | sed -e 's/^/export /'
+env | grep MANTA | sed -e 's/^/export /'

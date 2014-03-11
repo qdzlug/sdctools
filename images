@@ -1,0 +1,8 @@
+#! /usr/bin/env bash
+
+# images name
+
+NAME=$1
+
+sdc-listimages | json -a -C "this.name.match(/${NAME}/)" id version name
+exit

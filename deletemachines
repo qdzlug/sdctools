@@ -1,0 +1,10 @@
+#! /usr/bin/env bash
+
+# deletmachines id id id
+
+for i in $@; do
+  echo "Deleting " $i
+  sdc-deletemachine $i
+done
+
+exit

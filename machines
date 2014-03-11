@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+
+# machines
+
+
+sdc-listmachines | json -a id package dataset
+exit
