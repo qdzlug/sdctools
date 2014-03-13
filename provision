@@ -17,10 +17,10 @@ else
   PKGTYPE="g3-standard-${SIZE}-smartos"
 fi
 
-echo "Provisioning ${IMAGENAME} ${IMAGEVER} ${PKGTYPE} (${NAME}"
+echo "Provisioning ${IMAGENAME} ${IMAGEVER} ${PKGTYPE} (${NAME})"
 
 SERVER_ID=$(sdc-createmachine --dataset $IMAGEID \
-                              --package "g3-standard-${SIZE}-${PKGTYPE}" \
+                              --package "${PKGTYPE}" \
                               --name $NAME \
                               --tag "sdctools=true" | json id)
 
