@@ -1,4 +1,6 @@
 #! /usr/bin/env bash
 
 
-sdc-getmachine $1| json state primaryIp
+for m in $@ ; do
+  sdc-getmachine $m| json -a name state primaryIp
+done
