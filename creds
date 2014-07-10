@@ -1,4 +1,30 @@
-#! /usr/bin/bash
+#! /usr/bin/env bash
+
+list=0
+
+
+while getopts l opt; do
+  case $opt in
+    l)
+        list=1
+  esac
+done
+
+if [[ $list -eq 1 ]] ; then
+  ls -1 ~/.creds
+  exit
+fi
+
+if [[ $# == 1 ]] ; then
+  f="$HOME/.creds/$1"
+  if [[ -f $f ]] ; then
+    source $f
+  else
+    echo -e "$1 doesn't exist\n"
+    exit
+  fi
+fi
+
 
 GREP_OPTIONS=--color=never
 env | grep SDC | sed -e 's/^/export /'
