@@ -1,0 +1,8 @@
+#! /usr/bin/env bash
+
+# packages name
+
+NAME=${1:-.*}
+
+sdc-listpackages | json -a -C "this.name.match(/${NAME}/)" id disk version name
+exit
