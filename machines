@@ -3,5 +3,5 @@
 # machines
 
 
-sdc-listmachines | json -a id primaryIp name dataset created
+sdc-listmachines | json -a id state primaryIp name dataset created
 exit
