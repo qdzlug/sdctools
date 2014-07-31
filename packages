@@ -1,8 +1,8 @@
 #! /usr/bin/env bash
 
 # packages name
-
+FORMATSTR="%36s %8s %8s %s\n"
 NAME=${1:-.*}
 
-sdc-listpackages | json -a -C "this.name.match(/${NAME}/)" id disk version name
+sdc-listpackages | json -ia -C "this.name.match(/${NAME}/)" id disk version name | xargs printf "$FORMATSTR"
 exit

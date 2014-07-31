@@ -2,6 +2,6 @@
 
 # machines
 
-
-sdc-listmachines | json -a id state primaryIp name dataset created
+FORMATSTR="%36s %-10s %15s %-10.10s %-25s %s\n"
+sdc-listmachines | json -a id state primaryIp name dataset created | xargs printf "${FORMATSTR}"
 exit

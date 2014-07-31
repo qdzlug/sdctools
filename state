@@ -1,6 +1,7 @@
 #! /usr/bin/env bash
 
+FORMATSTR="%-15.15s %-10s %15s %36s\n"
 
 for m in $@ ; do
-  sdc-getmachine $m| json -a name state primaryIp
+  sdc-getmachine $m| json -a name state primaryIp id | xargs printf "$FORMATSTR"
 done

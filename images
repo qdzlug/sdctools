@@ -1,8 +1,8 @@
 #! /usr/bin/env bash
 
 # images name
-
+FORMATSTR="%36s %10s %s\n"
 NAME=${1:-.*}
 
-sdc-listimages | json -a -C "this.name.match(/${NAME}/)" id version name
+sdc-listimages | json -a -C "this.name.match(/${NAME}/)" id version name | xargs printf "$FORMATSTR"
 exit
